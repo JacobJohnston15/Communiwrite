@@ -1,6 +1,6 @@
 {
   "firebase": "dazzling-heat-5064",
-  "public": "index",
+  "public": "Communiwrite",
   "ignore": [
     "firebase.json",
     "**/.*",
