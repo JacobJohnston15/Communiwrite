@@ -1,31 +1,105 @@
-<html>
-  <head>
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-    <link rel='stylesheet' type='text/css' href=''>
-  </head>
-  <body>
-    <div id='messagesDiv'></div>
-    <input type='text' id='nameInput' placeholder='Name'>
-    <input type='text' id='messageInput' placeholder='Message'>
-    <script>
-      var myDataRef = new Firebase('https://dazzling-heat-5064.firebaseapp.com');
-      $('#messageInput').keypress(function (e) {
-        if (e.keyCode == 13) {
-          var name = $('#nameInput').val();
-          var text = $('#messageInput').val();
-          myDataRef.push({name: name, text: text});
-          $('#messageInput').val('');
-        }
-      });
-      myDataRef.on('child_added', function(snapshot) {
-        var message = snapshot.val();
-        displayChatMessage(message.name, message.text);
-      });
-      function displayChatMessage(name, text) {
-        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
-        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
-      };
-    </script>
-  </body>
-</html>
+<header class="" id="top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse"> <span class="sr-only">Toggle navigation</span>
+
+
+
+            </button> <a href="#" class="navbar-brand">Communiwrite</a>
+
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li> <a href="#/">Login</a>
+
+                </li>
+                <li> <a href="#/logout">Logout</a>
+
+                </li>
+                <li> <a href="#/register">Register</a>
+
+                </li>
+                <li> <a href="#/profile">Profile</a>
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="container" class="container">
+    <!-- LOGIN -->
+    <form id="frmLogin" role="form">
+         <h2>Login</h2>
+
+        <div class="form-group">
+            <label for="txtEmail">Email address</label>
+            <input type="email" class="form-control" id="txtEmail" placeholder="Enter email" name="email" />
+        </div>
+        <div class="form-group">
+            <label for="txtPass">Password</label>
+            <input type="password" class="form-control" id="txtPass" placeholder="Password" name="password" />
+        </div>
+        <button type="submit" class="btn btn-default btn-block">Login</button>
+        <br />
+        <br />
+         <h4>Login with</h4>
+ <a href="#" class="btn btn-primary bt-social" data-provider="facebook">Facebook</a>
+ <a href="#" class="btn btn-info bt-social" data-provider="twitter">Twitter</a>
+
+        <!-- <a href="#" class="btn btn-danger bt-social" data-provider="google">Google+</a> --> <a href="#" class="btn btn-default bt-social" data-provider="github">GitHub</a>
+
+
+    </form>
+    <!-- / LOGIN -->
+    <!-- LOGOUT -->
+    <form id="frmLogout" role="form">
+         <h2>You are logged out!</h2>
+
+    </form>
+    <!-- / LOGOUT -->
+    <!-- REGISTER -->
+    <form id="frmRegister" role="form">
+         <h2>Register</h2>
+
+        <div class="form-group">
+            <label for="txtRegEmail">Email address</label>
+            <input type="email" class="form-control" id="txtEmail" placeholder="Enter email" name="email" />
+        </div>
+        <div class="form-group">
+            <label for="txtRegPass">Password</label>
+            <input type="password" class="form-control" id="txtPass" placeholder="Password" name="password" />
+        </div>
+        <button type="submit" class="btn btn-default">Register</button>
+    </form>
+    <!-- / REGISTER -->
+    <!-- PROFILE -->
+    <form id="frmProfile" role="form">
+         <h2>Profile</h2>
+
+        <br />
+        <div class="form-group">
+            <label for="txtName">Name</label>
+            <input type="text" class="form-control" id="txtName" placeholder="Name" name="name" />
+        </div>
+        <div class="form-group">
+            <label for="ddlDino">Who are you?</label>
+            <select id="ddlDino" name="favoriteDinosaur" class="form-control">
+                <option>Coder</option>
+                <option>Writer</option>
+                <option>Reader</option>
+                <option>Blogger</option>
+                <option>All/Mixture of Above</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+    <!-- / PROFILE -->
+    <hr />
+    <!-- ALERT BOX -->
+    <div id="alert" class="alert" role="alert">
+         <h4 id="alert-title">You are not logged in</h4>
+
+        <p id="alert-detail"></p>
+    </div>
+    <!-- / ALERT BOX -->
+</div>
