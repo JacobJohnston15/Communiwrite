@@ -2,6 +2,7 @@
   <head>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
     <link rel='stylesheet' type='text/css' href=''>
   </head>
   <body>
@@ -9,6 +10,7 @@
     <input type='text' id='nameInput' placeholder='Name'>
     <input type='text' id='messageInput' placeholder='Message'>
     <script>
+      var Firebase = require("firebase");
       var myDataRef = new Firebase('https://dazzling-heat-5064.firebaseapp.com');
       $('#messageInput').keypress(function (e) {
         if (e.keyCode == 13) {
@@ -27,5 +29,28 @@
         $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
       };
     </script>
+
+    <script>
+        var usersRef = ref.child("users");
+            usersRef.child("jacob").set({
+            date_of_birth: "September 11, 1997",
+            full_name: "Jacob Johnston"
+        });
+            usersRef.child("user2").set({
+            date_of_birth: "December 9, 1906",
+            full_name: "John Doe"
+        });
+
+        // compltetion callback // 
+        dataRef.set("I'm writing data", function(error) {
+        if (error) {
+        alert("Data could not be saved." + error);
+        } else {
+        alert("Data saved successfully.");
+        }
+        });
+
+    </script>
+
   </body>
 </html>
